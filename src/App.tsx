@@ -1,5 +1,5 @@
-import {useRegisterUserMutation} from './redux';
-import {useEffect} from "react";
+import {useRegisterUserMutation} from './redux'
+import {useEffect} from "react"
 import {useForm, Controller} from "react-hook-form"
 
 type FormData = {
@@ -29,10 +29,10 @@ function App() {
 
     return (
         <div>
-            <h1>Hello world! test commit</h1>
             <button onClick = {() => {
                 localStorage.removeItem("bearerTokenForTodos")
             }}>Logout</button>
+            <h2>Sign up</h2>
             <form
                 className={"form-block"}
                 onSubmit={handleSubmit(onFormSubmit)}

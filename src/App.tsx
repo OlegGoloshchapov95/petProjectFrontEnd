@@ -24,12 +24,15 @@ function App() {
     }
 
     useEffect(() => {
-        console.log(JSON.stringify(registerUserResult))
+        registerUserResult?.data?.jwt && localStorage.setItem("bearerTokenForTodos",`Bearer ${registerUserResult.data.jwt}`)
     }, [registerUserResult])
 
     return (
         <div>
             <h1>Hello world! test commit</h1>
+            <button onClick = {() => {
+                localStorage.removeItem("bearerTokenForTodos")
+            }}>Logout</button>
             <form
                 className={"form-block"}
                 onSubmit={handleSubmit(onFormSubmit)}

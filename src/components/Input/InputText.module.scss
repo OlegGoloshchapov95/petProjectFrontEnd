@@ -1,0 +1,89 @@
+@import "src/styles/mixins";
+
+.ErrorContainer {
+	color: rgb(var(--font-red));
+	font-family: var(--font-barlow);
+	p {
+		margin: 0;
+		font-size: 16px;
+	}
+}
+.InputTextContainer {
+	display: inline-block;
+	position: relative;
+	font-family: var(--font-barlow);
+	.input-inner-wrapper {
+		position: relative;
+		&.isError {
+			margin-bottom: 4px;
+			input {
+				border: rgba(var(--faded-red)) solid 1px;
+				padding-right: 50px;
+			}
+		}
+	}
+	input {
+		height: 56px;
+		border-radius: 8px;
+		background-color: rgb(var(--gray-700));
+		border: none;
+		font-size: 16px;
+		padding: 18px 20px;
+		color: rgb(var(--font-white));
+		&.isNarrowInHeight {
+			padding: 0 20px;
+			height: 30px;
+		}
+		&.isThinInput {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		&.pointer-events-none {
+			pointer-events: none;
+		}
+		&.icon-in-right {
+			padding-right: 60px;
+		}
+		&.searchIcon {
+			padding-left: 44px;
+		}
+		&::placeholder {
+			color: rgb(var(--font-light-gray));
+		}
+		&:active,
+		&:focus {
+			border-color: #39495f;
+			outline: none;
+		}
+		&.disabled {
+			color: #41474a;
+			&::placeholder {
+				color: rgba(var(--font-white), 0.4);
+			}
+		}
+	}
+	.copyLinkWhite {
+		background-color: #eeeeee;
+		color: #222222;
+	}
+}
+.FullWidth {
+	&-full {
+		width: 100%;
+	}
+}
+.copy-icon,
+.error-icon,
+.visibilityIcon {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 24px;
+	cursor: pointer;
+}
+.search-icon {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 14px;
+}

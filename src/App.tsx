@@ -1,7 +1,10 @@
 import {useRegisterUserMutation} from './redux'
 import {useEffect} from "react"
 import {useForm, Controller} from "react-hook-form"
-import InputText from "./components/Input/InputText";
+import InputText from "./components/Input/InputText"
+import {Route} from 'react-router-dom'
+import SignInForm from "./components/SignInForm/SignInForm";
+import SignUpForm from "./components/SignUpForm/SignUpForm";
 
 type FormData = {
     userName: string
@@ -30,6 +33,8 @@ function App() {
 
     return (
         <div>
+            <Route path='/' element={<SignUpForm/>}/>
+            <Route path='/profile'  element={<SignInForm/>}/>
             <button onClick = {() => {
                 localStorage.removeItem("bearerTokenForTodos")
             }}>Logout</button>

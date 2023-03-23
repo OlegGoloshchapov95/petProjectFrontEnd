@@ -2,9 +2,9 @@ import {useRegisterUserMutation} from './redux'
 import {useEffect} from "react"
 import {useForm, Controller} from "react-hook-form"
 import InputText from "./components/Input/InputText"
-import {Route} from 'react-router-dom'
-import SignInForm from "./components/SignInForm/SignInForm";
-import SignUpForm from "./components/SignUpForm/SignUpForm";
+import {Route, Routes} from 'react-router-dom'
+import SignInForm from "./components/SignInForm/SignInForm"
+import SignUpForm from "./components/SignUpForm/SignUpForm"
 
 type FormData = {
     userName: string
@@ -21,23 +21,26 @@ function App() {
 
     const onFormSubmit = (data: FormData) => {
         registerUserTrigger({
-            "username": data.userName? data.userName : "",
-            "email": data.email? data.email : "",
-            "password": data.password? data.password : ""
+            "username": data.userName ? data.userName : "",
+            "email": data.email ? data.email : "",
+            "password": data.password ? data.password : ""
         })
     }
 
     useEffect(() => {
-        registerUserResult?.data?.jwt && localStorage.setItem("bearerTokenForTodos",`Bearer ${registerUserResult.data.jwt}`)
+        registerUserResult?.data?.jwt && localStorage.setItem("bearerTokenForTodos", `Bearer ${registerUserResult.data.jwt}`)
     }, [registerUserResult])
 
     return (
         <div>
-            <Route path='/' element={<SignUpForm/>}/>
-            <Route path='/profile'  element={<SignInForm/>}/>
-            <button onClick = {() => {
+            <Routes>
+                <Route path='/' element={<SignUpForm/>}/>
+                <Route path='/signIn' element={<SignInForm/>}/>
+            </Routes>
+            <button onClick={() => {
                 localStorage.removeItem("bearerTokenForTodos")
-            }}>Logout</button>
+            }}>Logout
+            </button>
             <h2>Sign up</h2>
             <form
                 className={"form-block"}

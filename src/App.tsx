@@ -1,6 +1,7 @@
 import {useRegisterUserMutation} from './redux'
 import {useEffect} from "react"
 import {useForm, Controller} from "react-hook-form"
+import InputText from "./components/Input/InputText";
 
 type FormData = {
     userName: string
@@ -42,9 +43,11 @@ function App() {
                     <Controller
                         render={({field, fieldState}) => {
                             return (
-                                <input
-                                    {...(field && {...field})}
+                                <InputText
+                                    field={field}
                                     type="text"
+                                    fullWidth="full"
+                                    placeholder={"user name"}
                                 />
                             )
                         }}
@@ -58,9 +61,11 @@ function App() {
                     <Controller
                         render={({field, fieldState}) => {
                             return (
-                                <input
-                                    {...(field && {...field})}
+                                <InputText
+                                    field={field}
                                     type="text"
+                                    fullWidth="full"
+                                    placeholder={"email"}
                                 />
                             )
                         }}
@@ -74,9 +79,11 @@ function App() {
                     <Controller
                         render={({field, fieldState}) => {
                             return (
-                                <input
-                                    {...(field && {...field})}
-                                    type="text"
+                                <InputText
+                                    field={field}
+                                    type="password"
+                                    fullWidth="full"
+                                    placeholder={"password"}
                                 />
                             )
                         }}

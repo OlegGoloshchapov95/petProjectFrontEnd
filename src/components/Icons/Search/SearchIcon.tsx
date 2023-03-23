@@ -1,5 +1,5 @@
 import styles from "./SearchIcon.module.scss"
-import {cc} from "@/utils/Classnames"
+import {cc} from "../../../utils/Classnames"
 
 interface SearchIconProps {
 	className?: string

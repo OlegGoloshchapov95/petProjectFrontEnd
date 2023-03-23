@@ -1,5 +1,5 @@
 import styles from "./CopyIcon.module.scss"
-import {cc} from "@/utils/Classnames"
+import {cc} from "../../../utils/Classnames"
 
 interface GoogleIconProps {
 	className?: string

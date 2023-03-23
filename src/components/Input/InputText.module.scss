@@ -1,8 +1,6 @@
-@import "src/styles/mixins";
-
 .ErrorContainer {
-	color: rgb(var(--font-red));
-	font-family: var(--font-barlow);
+	color: red;
+	font-family: sans-serif;
 	p {
 		margin: 0;
 		font-size: 16px;
@@ -11,13 +9,13 @@
 .InputTextContainer {
 	display: inline-block;
 	position: relative;
-	font-family: var(--font-barlow);
+	font-family: sans-serif;
 	.input-inner-wrapper {
 		position: relative;
 		&.isError {
 			margin-bottom: 4px;
 			input {
-				border: rgba(var(--faded-red)) solid 1px;
+				border: red solid 1px;
 				padding-right: 50px;
 			}
 		}
@@ -25,11 +23,11 @@
 	input {
 		height: 56px;
 		border-radius: 8px;
-		background-color: rgb(var(--gray-700));
+		background-color: gray;
 		border: none;
 		font-size: 16px;
 		padding: 18px 20px;
-		color: rgb(var(--font-white));
+		color: white;
 		&.isNarrowInHeight {
 			padding: 0 20px;
 			height: 30px;
@@ -48,7 +46,7 @@
 			padding-left: 44px;
 		}
 		&::placeholder {
-			color: rgb(var(--font-light-gray));
+			color: gray;
 		}
 		&:active,
 		&:focus {
@@ -58,7 +56,7 @@
 		&.disabled {
 			color: #41474a;
 			&::placeholder {
-				color: rgba(var(--font-white), 0.4);
+				color: rgba(white, 0.4);
 			}
 		}
 	}

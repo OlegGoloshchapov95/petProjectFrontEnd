@@ -1,5 +1,5 @@
 import styles from "./VisibilityIcon.module.scss"
-import {cc} from "@/utils/Classnames"
+import {cc} from "../../../utils/Classnames"
 
 interface VisibilityIconProps {
 	propsClass?: string

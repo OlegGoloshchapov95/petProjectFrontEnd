@@ -1,5 +1,5 @@
 import styles from "./VisibilityOffIcon.module.scss"
-import {cc} from "@/utils/Classnames"
+import {cc} from "../../../utils/Classnames"
 
 interface VisibilityOffIconProps {
 	propsClass?: string

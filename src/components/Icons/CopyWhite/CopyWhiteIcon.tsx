@@ -1,5 +1,5 @@
 import styles from "./CopyWhiteIcon.module.scss"
-import {cc} from "@/utils/Classnames"
+import {cc} from "../../../utils/Classnames"
 
 interface CopyWhiteIconProps {
 	className?: string

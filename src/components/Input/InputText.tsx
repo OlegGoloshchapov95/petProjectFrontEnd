@@ -85,8 +85,8 @@ function InputText(props: InputTextProps) {
 		clipboard.copy(value)
 	}
 	useEffect(() => {
-		field && (value || value == "") && field.onChange(value)
-	}, [value])
+		field && (value || value === "") && field.onChange(value)
+	}, [value, field])
 	return (
 		<div
 			className={cc(
@@ -125,8 +125,8 @@ function InputText(props: InputTextProps) {
 							type === "copyLinkWhite") &&
 							styles["icon-in-right"],
 						isPointerEventsNone && styles["pointer-events-none"],
-						type == "copyLinkWhite" && styles["copyLinkWhite"],
-						type == "searchIcon" && styles["searchIcon"],
+						type === "copyLinkWhite" && styles["copyLinkWhite"],
+						type === "searchIcon" && styles["searchIcon"],
 						isNarrowInHeight && styles.isNarrowInHeight,
 						isThinInput && styles.isThinInput
 					)}

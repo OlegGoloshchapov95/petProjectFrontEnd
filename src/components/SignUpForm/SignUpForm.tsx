@@ -4,6 +4,7 @@ import {useRegisterUserMutation} from '../../redux'
 import {Controller, useForm} from "react-hook-form"
 import InputText from "../Input/InputText"
 import {useEffect} from "react"
+import Link from "../Link/Link";
 
 interface SignUpFormProps {
 }
@@ -97,6 +98,7 @@ function SignUpForm(props: SignUpFormProps) {
 				/>
 			</div>
 			<button type="submit">Send</button>
+			<Link to="/signIn">Sign in</Link>
 		</form>
 	)
 }

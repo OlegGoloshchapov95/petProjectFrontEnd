@@ -1,17 +1,85 @@
-import styles from "./SignInForm.module.scss"
+import styles from "./SignUpForm.module.scss"
 import {cc} from "../../utils/Classnames"
+import {useAuthUserMutation} from '../../redux'
+import {Controller, useForm} from "react-hook-form"
+import InputText from "../Input/InputText"
+import {useEffect} from "react"
+import Link from "../Link/Link";
 
 interface SignInFormProps {
+}
+
+type FormData = {
+	identifier: string
+	password: string
 }
 
 function SignInForm(props: SignInFormProps) {
 	const {
 	} = props
 
+	const [registerUserTrigger, registerUserResult] = useAuthUserMutation()
+
+	const {handleSubmit, control} = useForm<FormData>({
+		mode: "onChange",
+	})
+
+	const onFormSubmit = (data: FormData) => {
+		registerUserTrigger({
+			"identifier": data.identifier ? data.identifier : "",
+			"password": data.password ? data.password : ""
+		})
+	}
+
+	useEffect(() => {
+		registerUserResult?.data?.jwt && localStorage.setItem("bearerTokenForTodos", `Bearer ${registerUserResult.data.jwt}`)
+	}, [registerUserResult])
+
 	return (
-		<div
+		<form
+			className={"form-block"}
+			onSubmit={handleSubmit(onFormSubmit)}
 		>
-		</div>
+			<h2>Sign in</h2>
+			<div className={"form-item"}>
+				<label>User name or email</label>
+				<Controller
+					render={({field, fieldState}) => {
+						return (
+							<InputText
+								field={field}
+								type="text"
+								fullWidth="full"
+								placeholder={"user name or email"}
+							/>
+						)
+					}}
+					name="identifier"
+					control={control}
+					defaultValue={""}
+				/>
+			</div>
+			<div className={"form-item"}>
+				<label>Password</label>
+				<Controller
+					render={({field, fieldState}) => {
+						return (
+							<InputText
+								field={field}
+								type="password"
+								fullWidth="full"
+								placeholder={"password"}
+							/>
+						)
+					}}
+					name="password"
+					control={control}
+					defaultValue={""}
+				/>
+			</div>
+			<button type="submit">Send</button>
+			<Link to="/">Sign up</Link>
+		</form>
 	)
 }
 

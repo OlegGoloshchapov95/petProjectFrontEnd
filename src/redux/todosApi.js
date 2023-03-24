@@ -22,32 +22,14 @@ export const todosApi = createApi({
                 body,
             })
         }),
-        /*/api/auth/local/register*/
-        /*getGoods: build.query({
-            query: (limit = '') => `goods?${limit && `_limit=${limit}`}`,
-            providesTags: (result) => result
-                ? [
-                    ...result.map(({ id }) => ({ type: 'Products', id })),
-                    { type: 'Products', id: 'LIST' },
-                ]
-                : [{ type: 'Products', id: 'LIST' }],
-        }),
-        addProduct: build.mutation({
+        authUser: build.mutation({
             query: (body) => ({
-                url: 'goods',
+                url: 'api/auth/local',
                 method: 'POST',
                 body,
-            }),
-            invalidatesTags: [{type: 'Products', id: 'LIST'}]
-        }),
-        deleteProduct: build.mutation({
-            query: (id) => ({
-                url: `goods/${id}`,
-                method: 'DELETE',
-            }),
-            invalidatesTags: [{type: 'Products', id: 'LIST'}]
-        })*/
+            })
+        })
     })
 });
 
-export const {useRegisterUserMutation/*useGetGoodsQuery, useAddProductMutation, useDeleteProductMutation*/} = todosApi;
+export const {useRegisterUserMutation, useAuthUserMutation} = todosApi;

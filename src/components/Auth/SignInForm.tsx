@@ -1,25 +1,24 @@
-import styles from "./SignUpForm.module.scss"
+import styles from "./Auth.module.scss"
 import {cc} from "../../utils/Classnames"
-import {useRegisterUserMutation} from '../../redux'
+import {useAuthUserMutation} from '../../redux'
 import {Controller, useForm} from "react-hook-form"
 import InputText from "../Input/InputText"
 import {useEffect} from "react"
 import Link from "../Link/Link";
 
-interface SignUpFormProps {
+interface SignInFormProps {
 }
 
 type FormData = {
-	userName: string
-	email: string
+	identifier: string
 	password: string
 }
 
-function SignUpForm(props: SignUpFormProps) {
+function SignInForm(props: SignInFormProps) {
 	const {
 	} = props
 
-	const [registerUserTrigger, registerUserResult] = useRegisterUserMutation()
+	const [registerUserTrigger, registerUserResult] = useAuthUserMutation()
 
 	const {handleSubmit, control} = useForm<FormData>({
 		mode: "onChange",
@@ -27,8 +26,7 @@ function SignUpForm(props: SignUpFormProps) {
 
 	const onFormSubmit = (data: FormData) => {
 		registerUserTrigger({
-			"username": data.userName ? data.userName : "",
-			"email": data.email ? data.email : "",
+			"identifier": data.identifier ? data.identifier : "",
 			"password": data.password ? data.password : ""
 		})
 	}
@@ -42,9 +40,9 @@ function SignUpForm(props: SignUpFormProps) {
 			className={"form-block"}
 			onSubmit={handleSubmit(onFormSubmit)}
 		>
-			<h2>Sign up</h2>
+			<h2>Sign in</h2>
 			<div className={"form-item"}>
-				<label>User name</label>
+				<label>User name or email</label>
 				<Controller
 					render={({field, fieldState}) => {
 						return (
@@ -52,29 +50,11 @@ function SignUpForm(props: SignUpFormProps) {
 								field={field}
 								type="text"
 								fullWidth="full"
-								placeholder={"user name"}
+								placeholder={"user name or email"}
 							/>
 						)
 					}}
-					name="userName"
-					control={control}
-					defaultValue={""}
-				/>
-			</div>
-			<div className={"form-item"}>
-				<label>Email</label>
-				<Controller
-					render={({field, fieldState}) => {
-						return (
-							<InputText
-								field={field}
-								type="text"
-								fullWidth="full"
-								placeholder={"email"}
-							/>
-						)
-					}}
-					name="email"
+					name="identifier"
 					control={control}
 					defaultValue={""}
 				/>
@@ -98,9 +78,9 @@ function SignUpForm(props: SignUpFormProps) {
 				/>
 			</div>
 			<button type="submit">Send</button>
-			<Link to="/signIn">Sign in</Link>
+			<Link to="/">Sign up</Link>
 		</form>
 	)
 }
 
-export default SignUpForm
+export default SignInForm

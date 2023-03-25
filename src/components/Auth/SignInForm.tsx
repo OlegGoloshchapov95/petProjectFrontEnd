@@ -5,6 +5,7 @@ import {Controller, useForm} from "react-hook-form"
 import InputText from "../Input/InputText"
 import {useEffect} from "react"
 import Link from "../Link/Link";
+import WhiteButton from "../AuthButton/WhiteButton";
 
 interface SignInFormProps {
 }
@@ -37,11 +38,11 @@ function SignInForm(props: SignInFormProps) {
 
 	return (
 		<form
-			className={"form-block"}
+			className={styles["form-block"]}
 			onSubmit={handleSubmit(onFormSubmit)}
 		>
 			<h2>Sign in</h2>
-			<div className={"form-item"}>
+			<div className={styles["form-item"]}>
 				<label>User name or email</label>
 				<Controller
 					render={({field, fieldState}) => {
@@ -59,7 +60,7 @@ function SignInForm(props: SignInFormProps) {
 					defaultValue={""}
 				/>
 			</div>
-			<div className={"form-item"}>
+			<div className={styles["form-item"]}>
 				<label>Password</label>
 				<Controller
 					render={({field, fieldState}) => {
@@ -77,7 +78,7 @@ function SignInForm(props: SignInFormProps) {
 					defaultValue={""}
 				/>
 			</div>
-			<button type="submit">Send</button>
+			<WhiteButton isSubmit={true} isNotFullWith={true} className={styles.sendButton}>Send</WhiteButton>
 			<Link to="/">Sign up</Link>
 		</form>
 	)

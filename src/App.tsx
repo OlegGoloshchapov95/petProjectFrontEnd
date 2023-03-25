@@ -1,10 +1,10 @@
-import {Route, Routes} from 'react-router-dom'
+import {Route, Routes} from "react-router-dom"
 import SignInForm from "./components/Auth/SignInForm"
 import SignUpForm from "./components/Auth/SignUpForm"
 
 function App() {
     return (
-        <div>
+        <div className="appWrapper">
             <Routes>
                 <Route path='/' element={<SignUpForm/>}/>
                 <Route path='/signIn' element={<SignInForm/>}/>

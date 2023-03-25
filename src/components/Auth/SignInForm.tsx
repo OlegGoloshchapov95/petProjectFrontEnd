@@ -79,7 +79,7 @@ function SignInForm(props: SignInFormProps) {
 				/>
 			</div>
 			<WhiteButton isSubmit={true} isNotFullWith={true} className={styles.sendButton}>Send</WhiteButton>
-			<Link to="/">Sign up</Link>
+			<Link to="/" className={styles.linkTo}>Sign up</Link>
 		</form>
 	)
 }

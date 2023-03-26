@@ -32,6 +32,12 @@ function TodosPage(props: TodosPageProps) {
 			</button>
 
 			<CreateTodo/>
+
+			{getTodosResult?.data?.data && getTodosResult?.data?.data.map((item:any, index:number) => {
+				return <>
+					<h2>{item.attributes.title}</h2>
+				</>
+			})}
 		</div>
 	)
 }

@@ -2,6 +2,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 export const todosApi = createApi({
     reducerPath: 'todosApi',
+    tagTypes: ['Todos'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:1337', prepareHeaders: (headers) => {
             const token = localStorage.getItem("bearerTokenForTodos");
@@ -34,15 +35,17 @@ export const todosApi = createApi({
                 url: 'api/todos',
                 method: 'POST',
                 body,
-            })
+            }),
+            invalidatesTags: ["Todos"]
         }),
-        getTodos: build.mutation({
+        getTodos: build.query({
             query: () => ({
                 url: 'api/todos',
                 method: 'GET',
-            })
+            }),
+            providesTags: ["Todos"]
         }),
     })
 });
 
-export const {useRegisterUserMutation, useAuthUserMutation, useCreateTodoMutation, useGetTodosMutation} = todosApi;
+export const {useRegisterUserMutation, useAuthUserMutation, useCreateTodoMutation, useLazyGetTodosQuery} = todosApi;

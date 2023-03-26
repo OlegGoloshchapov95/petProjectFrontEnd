@@ -5,7 +5,8 @@ import {Controller, useForm} from "react-hook-form"
 import InputText from "../Input/InputText"
 import {useEffect} from "react"
 import Link from "../Link/Link";
-import WhiteButton from "../AuthButton/WhiteButton";
+import WhiteButton from "../AuthButton/WhiteButton"
+import {useNavigate} from "react-router-dom"
 
 interface SignInFormProps {
 }
@@ -19,22 +20,27 @@ function SignInForm(props: SignInFormProps) {
 	const {
 	} = props
 
-	const [registerUserTrigger, registerUserResult] = useAuthUserMutation()
+	const [authUserTrigger, authUserResult] = useAuthUserMutation()
+
+	const navigate = useNavigate()
 
 	const {handleSubmit, control} = useForm<FormData>({
 		mode: "onChange",
 	})
 
 	const onFormSubmit = (data: FormData) => {
-		registerUserTrigger({
+		authUserTrigger({
 			"identifier": data.identifier ? data.identifier : "",
 			"password": data.password ? data.password : ""
 		})
 	}
 
 	useEffect(() => {
-		registerUserResult?.data?.jwt && localStorage.setItem("bearerTokenForTodos", `Bearer ${registerUserResult.data.jwt}`)
-	}, [registerUserResult])
+		if(authUserResult?.data?.jwt) {
+			localStorage.setItem("bearerTokenForTodos", `Bearer ${authUserResult.data.jwt}`)
+			navigate("/todos")
+		}
+	}, [authUserResult])
 
 	return (
 		<form

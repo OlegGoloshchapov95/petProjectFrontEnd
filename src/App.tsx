@@ -11,7 +11,7 @@ function App() {
         if(localStorage.getItem("bearerTokenForTodos")) {
             navigate("/todos")
         }
-    },[localStorage.getItem("bearerTokenForTodos")])
+    },[navigate])
 
     return (
         <div className="appWrapper">

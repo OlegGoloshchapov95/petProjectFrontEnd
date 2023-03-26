@@ -5,7 +5,8 @@ import {Controller, useForm} from "react-hook-form"
 import InputText from "../Input/InputText"
 import {useEffect} from "react"
 import Link from "../Link/Link";
-import WhiteButton from "../AuthButton/WhiteButton";
+import WhiteButton from "../AuthButton/WhiteButton"
+import {useNavigate} from "react-router-dom"
 
 interface SignUpFormProps {
 }
@@ -22,6 +23,8 @@ function SignUpForm(props: SignUpFormProps) {
 
 	const [registerUserTrigger, registerUserResult] = useRegisterUserMutation()
 
+	const navigate = useNavigate()
+
 	const {handleSubmit, control} = useForm<FormData>({
 		mode: "onChange",
 	})
@@ -35,7 +38,10 @@ function SignUpForm(props: SignUpFormProps) {
 	}
 
 	useEffect(() => {
-		registerUserResult?.data?.jwt && localStorage.setItem("bearerTokenForTodos", `Bearer ${registerUserResult.data.jwt}`)
+		if(registerUserResult?.data?.jwt) {
+			localStorage.setItem("bearerTokenForTodos", `Bearer ${registerUserResult.data.jwt}`)
+			navigate("/todos")
+		}
 	}, [registerUserResult])
 
 	return (

@@ -28,8 +28,15 @@ export const todosApi = createApi({
                 method: 'POST',
                 body,
             })
+        }),
+        createTodo: build.mutation({
+            query: (body) => ({
+                url: 'api/todos',
+                method: 'POST',
+                body,
+            })
         })
     })
 });
 
-export const {useRegisterUserMutation, useAuthUserMutation} = todosApi;
+export const {useRegisterUserMutation, useAuthUserMutation, useCreateTodoMutation} = todosApi;

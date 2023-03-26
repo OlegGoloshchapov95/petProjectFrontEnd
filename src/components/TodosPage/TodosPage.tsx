@@ -1,6 +1,7 @@
 import styles from "./InputText.module.scss"
 import {cc} from "../../utils/Classnames"
 import {useNavigate} from "react-router-dom"
+import CreateTodo from "../CreateTodo/CreateTodo"
 
 interface TodosPageProps {
 }
@@ -18,6 +19,8 @@ function TodosPage(props: TodosPageProps) {
 				navigate("/")
 			}}>Logout
 			</button>
+
+			<CreateTodo/>
 		</div>
 	)
 }

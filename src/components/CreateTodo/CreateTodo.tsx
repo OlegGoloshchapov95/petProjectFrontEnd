@@ -10,6 +10,7 @@ interface CreateTodoProps {
 
 type FormData = {
 	title: string
+	description: string
 }
 
 function CreateTodo(props: CreateTodoProps) {
@@ -25,7 +26,8 @@ function CreateTodo(props: CreateTodoProps) {
 	const onFormSubmit = (data: FormData) => {
 		createTodoTrigger({
 			data: {
-				"title": data.title ? data.title : ""
+				"title": data.title ? data.title : "",
+				"description": data.description ? data.description : ""
 			}
 		})
 	}
@@ -50,6 +52,24 @@ function CreateTodo(props: CreateTodoProps) {
 						)
 					}}
 					name="title"
+					control={control}
+					defaultValue={""}
+				/>
+			</div>
+			<div className={styles["form-item"]}>
+				<label>description</label>
+				<Controller
+					render={({field, fieldState}) => {
+						return (
+							<InputText
+								field={field}
+								type="text"
+								fullWidth="full"
+								placeholder={"title"}
+							/>
+						)
+					}}
+					name="description"
 					control={control}
 					defaultValue={""}
 				/>

@@ -65,7 +65,7 @@ function CreateTodo(props: CreateTodoProps) {
 								field={field}
 								type="text"
 								fullWidth="full"
-								placeholder={"title"}
+								placeholder={"description"}
 							/>
 						)
 					}}

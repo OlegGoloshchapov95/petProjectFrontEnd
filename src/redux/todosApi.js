@@ -47,8 +47,8 @@ export const todosApi = createApi({
         }),
         deleteTodo: build.mutation({
             query: (todo_id) => ({
-                url: 'api/todos/%todo_id%',
-                method: 'POST',
+                url: `api/todos/${todo_id}`,
+                method: 'DELETE',
             }),
             invalidatesTags: ["Todos"]
         }),

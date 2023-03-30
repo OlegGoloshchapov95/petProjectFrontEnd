@@ -36,7 +36,7 @@ function TodosPage(props: TodosPageProps) {
 
 			{getTodosResult?.data?.data && getTodosResult?.data?.data.map((item:any, index:number) => {
 				return <>
-					<Todo title={item.attributes.title} description={item.attributes.description? item.attributes.description : ""}/>
+					<Todo id={item.id} title={item.attributes.title} description={item.attributes.description? item.attributes.description : ""}/>
 				</>
 			})}
 		</div>

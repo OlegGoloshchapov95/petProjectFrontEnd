@@ -3,7 +3,8 @@ import {cc} from "../../utils/Classnames"
 import {useNavigate} from "react-router-dom"
 import CreateTodo from "../CreateTodo/CreateTodo"
 import {useLazyGetTodosQuery} from '../../redux'
-import {useEffect} from "react";
+import {useEffect} from "react"
+import Todo from "../Todo/Todo";
 
 interface TodosPageProps {
 }
@@ -35,10 +36,7 @@ function TodosPage(props: TodosPageProps) {
 
 			{getTodosResult?.data?.data && getTodosResult?.data?.data.map((item:any, index:number) => {
 				return <>
-					<h2>{item.attributes.title}</h2>
-					<p>
-						{item.attributes.description}
-					</p>
+					<Todo title={item.attributes.title} description={item.attributes.description? item.attributes.description : ""}/>
 				</>
 			})}
 		</div>

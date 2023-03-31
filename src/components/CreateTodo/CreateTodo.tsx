@@ -26,8 +26,8 @@ function CreateTodo(props: CreateTodoProps) {
 	const onFormSubmit = (data: FormData) => {
 		createTodoTrigger({
 			data: {
-				"title": data.title ? data.title : "",
-				"description": data.description ? data.description : ""
+				"title": data.title,
+				"description": data.description
 			}
 		})
 	}
@@ -53,7 +53,6 @@ function CreateTodo(props: CreateTodoProps) {
 					}}
 					name="title"
 					control={control}
-					defaultValue={""}
 				/>
 			</div>
 			<div className={styles["form-item"]}>
@@ -71,7 +70,6 @@ function CreateTodo(props: CreateTodoProps) {
 					}}
 					name="description"
 					control={control}
-					defaultValue={""}
 				/>
 			</div>
 			{

@@ -104,6 +104,11 @@ function SignUpForm(props: SignUpFormProps) {
 					defaultValue={""}
 				/>
 			</div>
+			{
+				//@ts-ignore
+				registerUserResult?.error?.data?.error?.message &&
+				//@ts-ignore
+				<div className={styles.errorBlock}>{registerUserResult?.error?.data?.error?.message}</div>}
 			<WhiteButton isSubmit={true} isNotFullWith={true} className={styles.sendButton}>Send</WhiteButton>
 			<Link to="/signIn" className={styles.linkTo}>Sign in</Link>
 		</form>

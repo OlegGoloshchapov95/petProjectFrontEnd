@@ -12,82 +12,87 @@ interface SignInFormProps {
 }
 
 type FormData = {
-	identifier: string
-	password: string
+    identifier: string
+    password: string
 }
 
 function SignInForm(props: SignInFormProps) {
-	const {
-	} = props
+    const {} = props
 
-	const [authUserTrigger, authUserResult] = useAuthUserMutation()
+    const [authUserTrigger, authUserResult] = useAuthUserMutation()
 
-	const navigate = useNavigate()
+    const navigate = useNavigate()
 
-	const {handleSubmit, control} = useForm<FormData>({
-		mode: "onChange",
-	})
+    const {handleSubmit, control} = useForm<FormData>({
+        mode: "onChange",
+    })
 
-	const onFormSubmit = (data: FormData) => {
-		authUserTrigger({
-			"identifier": data.identifier ? data.identifier : "",
-			"password": data.password ? data.password : ""
-		})
-	}
+    const onFormSubmit = (data: FormData) => {
+        authUserTrigger({
+            "identifier": data.identifier ? data.identifier : "",
+            "password": data.password ? data.password : ""
+        })
+    }
 
-	useEffect(() => {
-		if(authUserResult?.data?.jwt) {
-			localStorage.setItem("bearerTokenForTodos", `Bearer ${authUserResult.data.jwt}`)
-			navigate("/todos")
-		}
-	}, [authUserResult])
+    useEffect(() => {
+        console.log(authUserResult)
+        if (authUserResult?.data?.jwt) {
+            localStorage.setItem("bearerTokenForTodos", `Bearer ${authUserResult.data.jwt}`)
+            navigate("/todos")
+        }
+    }, [authUserResult])
 
-	return (
-		<form
-			className={styles["form-block"]}
-			onSubmit={handleSubmit(onFormSubmit)}
-		>
-			<h2>Sign in</h2>
-			<div className={styles["form-item"]}>
-				<label>User name or email</label>
-				<Controller
-					render={({field, fieldState}) => {
-						return (
-							<InputText
-								field={field}
-								type="text"
-								fullWidth="full"
-								placeholder={"user name or email"}
-							/>
-						)
-					}}
-					name="identifier"
-					control={control}
-					defaultValue={""}
-				/>
-			</div>
-			<div className={styles["form-item"]}>
-				<label>Password</label>
-				<Controller
-					render={({field, fieldState}) => {
-						return (
-							<InputText
-								field={field}
-								type="password"
-								fullWidth="full"
-								placeholder={"password"}
-							/>
-						)
-					}}
-					name="password"
-					control={control}
-					defaultValue={""}
-				/>
-			</div>
-			<WhiteButton isSubmit={true} isNotFullWith={true} className={styles.sendButton}>Send</WhiteButton>
-			<Link to="/" className={styles.linkTo}>Sign up</Link>
-		</form>
-	)
+    return (
+        <form
+            className={styles["form-block"]}
+            onSubmit={handleSubmit(onFormSubmit)}
+        >
+            <h2>Sign in</h2>
+            <div className={styles["form-item"]}>
+                <label>User name or email</label>
+                <Controller
+                    render={({field, fieldState}) => {
+                        return (
+                            <InputText
+                                field={field}
+                                type="text"
+                                fullWidth="full"
+                                placeholder={"user name or email"}
+                            />
+                        )
+                    }}
+                    name="identifier"
+                    control={control}
+                    defaultValue={""}
+                />
+            </div>
+            <div className={styles["form-item"]}>
+                <label>Password</label>
+                <Controller
+                    render={({field, fieldState}) => {
+                        return (
+                            <InputText
+                                field={field}
+                                type="password"
+                                fullWidth="full"
+                                placeholder={"password"}
+                            />
+                        )
+                    }}
+                    name="password"
+                    control={control}
+                    defaultValue={""}
+                />
+            </div>
+            {
+                //@ts-ignore
+                authUserResult?.error?.data?.error?.message &&
+                //@ts-ignore
+                <div className={styles.errorBlock}>{authUserResult?.error?.data?.error?.message}</div>}
+            <WhiteButton isSubmit={true} isNotFullWith={true} className={styles.sendButton}>Send</WhiteButton>
+            <Link to="/" className={styles.linkTo}>Sign up</Link>
+        </form>
+    )
 }
 
 export default SignInForm

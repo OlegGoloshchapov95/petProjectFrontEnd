@@ -74,6 +74,11 @@ function CreateTodo(props: CreateTodoProps) {
 					defaultValue={""}
 				/>
 			</div>
+			{
+				//@ts-ignore
+				createTodoResult?.error?.data?.error?.message &&
+				//@ts-ignore
+				<div className={styles.errorBlock}>{createTodoResult?.error?.data?.error?.message}</div>}
 			<WhiteButton isSubmit={true} isNotFullWith={true} className={styles.sendButton}>Create new todo</WhiteButton>
 		</form>
 	)

@@ -1,18 +1,18 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 
 export const todosApi = createApi({
     reducerPath: 'todosApi',
     tagTypes: ['Todos'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:1337', prepareHeaders: (headers) => {
-            const token = localStorage.getItem("bearerTokenForTodos");
+            const token = localStorage.getItem("bearerTokenForTodos")
 
             // If we have a token set in state, let's assume that we should be passing it.
             if (token) {
-                headers.set('authorization', token);
+                headers.set('authorization', token)
             }
 
-            return headers;
+            return headers
         },
     }),
     endpoints: (build) => ({
@@ -53,6 +53,6 @@ export const todosApi = createApi({
             invalidatesTags: ["Todos"]
         }),
     })
-});
+})
 
-export const {useRegisterUserMutation, useAuthUserMutation, useCreateTodoMutation, useLazyGetTodosQuery, useDeleteTodoMutation} = todosApi;
+export const {useRegisterUserMutation, useAuthUserMutation, useCreateTodoMutation, useLazyGetTodosQuery, useDeleteTodoMutation} = todosApi

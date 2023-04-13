@@ -26,19 +26,15 @@ function CreateTodo(props: CreateTodoProps) {
 	})
 
 	useEffect(() => {
-		meUserTrigger()
+		meUserTrigger({})
 	},[meUserTrigger])
-
-	useEffect(() => {
-		console.log("meUserResult")
-		console.log(meUserResult)
-	},[meUserResult])
 
 	const onFormSubmit = (data: FormData) => {
 		createTodoTrigger({
 			data: {
 				"title": data.title,
-				"description": data.description
+				"description": data.description,
+				"user": meUserResult?.data? meUserResult.data : ""
 			}
 		})
 	}

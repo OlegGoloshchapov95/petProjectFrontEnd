@@ -52,7 +52,7 @@ export const todosApi = createApi({
             }),
             invalidatesTags: ["Todos"]
         }),
-        meUser: build.mutation({
+        meUser: build.query({
             query: () => ({
                 url: 'api/users/me',
                 method: 'GET',

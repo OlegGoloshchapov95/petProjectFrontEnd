@@ -21,6 +21,7 @@ function TodosPage(props: TodosPageProps) {
 	}, [getTodosTrigger])
 
 	useEffect(() => {
+		console.log("getTodosResult")
 		console.log(getTodosResult)
 	}, [getTodosResult])
 

@@ -1,9 +1,10 @@
 import styles from "./CreateTodo.module.scss"
 import {cc} from "../../utils/Classnames"
-import {useCreateTodoMutation} from '../../redux'
+import {useCreateTodoMutation, useLazyMeUserQuery} from '../../redux'
 import {Controller, useForm} from "react-hook-form"
 import InputText from "../Input/InputText"
 import WhiteButton from "../AuthButton/WhiteButton"
+import {useEffect} from "react";
 
 interface CreateTodoProps {
 }
@@ -18,10 +19,20 @@ function CreateTodo(props: CreateTodoProps) {
 	} = props
 
 	const [createTodoTrigger, createTodoResult] = useCreateTodoMutation()
+	const [meUserTrigger, meUserResult] = useLazyMeUserQuery()
 
 	const {handleSubmit, control} = useForm<FormData>({
 		mode: "onChange",
 	})
+
+	useEffect(() => {
+		meUserTrigger()
+	},[meUserTrigger])
+
+	useEffect(() => {
+		console.log("meUserResult")
+		console.log(meUserResult)
+	},[meUserResult])
 
 	const onFormSubmit = (data: FormData) => {
 		createTodoTrigger({

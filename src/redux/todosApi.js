@@ -52,7 +52,13 @@ export const todosApi = createApi({
             }),
             invalidatesTags: ["Todos"]
         }),
+        meUser: build.mutation({
+            query: () => ({
+                url: 'api/users/me',
+                method: 'GET',
+            })
+        }),
     })
 })
 
-export const {useRegisterUserMutation, useAuthUserMutation, useCreateTodoMutation, useLazyGetTodosQuery, useDeleteTodoMutation} = todosApi
+export const {useRegisterUserMutation, useAuthUserMutation, useCreateTodoMutation, useLazyGetTodosQuery, useLazyMeUserQuery, useDeleteTodoMutation} = todosApi

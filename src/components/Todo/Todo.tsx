@@ -6,6 +6,7 @@ interface TodoProps {
 	title: string
 	description: string
 	id: string
+	userName: string
 }
 
 function Todo(props: TodoProps) {
@@ -13,12 +14,14 @@ function Todo(props: TodoProps) {
 		title,
 		description,
 		id,
+		userName,
 	} = props
 
 	const [deleteTodoTrigger, deleteTodoResult] = useDeleteTodoMutation()
 
 	return (
 		<div className={styles.todoWrapper}>
+			<span className={styles.todoUser}>{userName}</span>
 			<h2 className={styles.todoTitle}>{title}</h2>
 			<p className={styles.todoDescription}>
 				{description}

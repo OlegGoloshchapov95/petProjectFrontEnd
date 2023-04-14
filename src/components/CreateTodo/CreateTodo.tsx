@@ -4,7 +4,7 @@ import {useCreateTodoMutation, useLazyMeUserQuery} from '../../redux'
 import {Controller, useForm} from "react-hook-form"
 import InputText from "../Input/InputText"
 import WhiteButton from "../AuthButton/WhiteButton"
-import {useEffect} from "react";
+import {useEffect} from "react"
 
 interface CreateTodoProps {
 }

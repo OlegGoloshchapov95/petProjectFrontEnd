@@ -1,6 +1,6 @@
 import styles from "./TopicsMessagesPage.module.scss"
 import {cc} from "../../utils/Classnames"
-import {useNavigate} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 import CreateTopic from "../CreateTopic/CreateTopic"
 import {useLazyGetTopicsQuery} from '../../redux'
 import {useEffect} from "react"
@@ -14,11 +14,17 @@ function TopicMessagesPage(props: TopicMessagesPageProps) {
 	} = props
 
 	const navigate = useNavigate()
+	const {topic_id} = useParams()
 	const [getTopicsTrigger, getTopicsResult] = useLazyGetTopicsQuery()
 
     useEffect(() => {
 		getTopicsTrigger({})
 	}, [getTopicsTrigger])
+
+	useEffect(() => {
+		console.log("topic_id")
+		console.log(topic_id)
+	}, [topic_id])
 
 	useEffect(() => {
 		console.log("getTopicsResult")
@@ -32,8 +38,6 @@ function TopicMessagesPage(props: TopicMessagesPageProps) {
 				navigate("/")
 			}}>Logout
 			</button>
-
-			<CreateTopic/>
 
 			{getTopicsResult?.data?.data && getTopicsResult?.data?.data.map((item:any, index:number) => {
 				return <>

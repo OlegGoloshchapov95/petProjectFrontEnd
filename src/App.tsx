@@ -9,7 +9,7 @@ function App() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(localStorage.getItem("bearerTokenForTodos")) {
+        if(window?.location?.pathname=="/" && localStorage.getItem("bearerTokenForTodos")) {
             navigate("/topics")
         }
     },[navigate])
@@ -20,7 +20,7 @@ function App() {
                 <Route path='/' element={<SignUpForm/>}/>
                 <Route path='/signIn' element={<SignInForm/>}/>
                 <Route path='/topics' element={<TopicsPage/>}/>
-                <Route path='/topicsMessages' element={<TopicMessagesPage/>}/>
+                <Route path='/topicsMessages/:topic_id' element={<TopicMessagesPage/>}/>
             </Routes>
         </div>
     );

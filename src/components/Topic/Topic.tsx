@@ -1,15 +1,15 @@
-import styles from "./Todo.module.scss"
+import styles from "./Topic.module.scss"
 import {useDeleteTopicMutation} from '../../redux'
 import {cc} from "../../utils/Classnames"
 
-interface TodoProps {
+interface TopicProps {
 	title: string
 	description: string
 	id: string
 	userName: string
 }
 
-function Todo(props: TodoProps) {
+function Topic(props: TopicProps) {
 	const {
 		title,
 		description,
@@ -33,4 +33,4 @@ function Todo(props: TodoProps) {
 	)
 }
 
-export default Todo
+export default Topic

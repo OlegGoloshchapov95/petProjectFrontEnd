@@ -1,7 +1,7 @@
 import {Route, Routes, useNavigate} from "react-router-dom"
 import SignInForm from "./components/Auth/SignInForm"
 import SignUpForm from "./components/Auth/SignUpForm"
-import TodosPage from "./components/TodosPage/TodosPage"
+import TopicsPage from "./components/TopicsPage/TopicsPage"
 import {useEffect} from "react"
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
 
     useEffect(() => {
         if(localStorage.getItem("bearerTokenForTodos")) {
-            navigate("/todos")
+            navigate("/topics")
         }
     },[navigate])
 
@@ -18,7 +18,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<SignUpForm/>}/>
                 <Route path='/signIn' element={<SignInForm/>}/>
-                <Route path='/todos' element={<TodosPage/>}/>
+                <Route path='/topics' element={<TopicsPage/>}/>
             </Routes>
         </div>
     );

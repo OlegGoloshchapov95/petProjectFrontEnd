@@ -1,15 +1,15 @@
-import styles from "./InputText.module.scss"
+import styles from "./TopicsPage.module.scss"
 import {cc} from "../../utils/Classnames"
 import {useNavigate} from "react-router-dom"
-import CreateTodo from "../CreateTodo/CreateTodo"
+import CreateTopic from "../CreateTopic/CreateTopic"
 import {useLazyGetTopicsQuery} from '../../redux'
 import {useEffect} from "react"
-import Todo from "../Todo/Todo";
+import Topic from "../Topic/Topic"
 
-interface TodosPageProps {
+interface TopicsPageProps {
 }
 
-function TodosPage(props: TodosPageProps) {
+function TopicsPage(props: TopicsPageProps) {
 	const {
 	} = props
 
@@ -33,15 +33,15 @@ function TodosPage(props: TodosPageProps) {
 			}}>Logout
 			</button>
 
-			<CreateTodo/>
+			<CreateTopic/>
 
 			{getTopicsResult?.data?.data && getTopicsResult?.data?.data.map((item:any, index:number) => {
 				return <>
-					<Todo userName={item.attributes.user.username} id={item.id} title={item.attributes.title} description={item.attributes.description? item.attributes.description : ""}/>
+					<Topic userName={item.attributes.user.username} id={item.id} title={item.attributes.title} description={item.attributes.description? item.attributes.description : ""}/>
 				</>
 			})}
 		</div>
 	)
 }
 
-export default TodosPage
+export default TopicsPage

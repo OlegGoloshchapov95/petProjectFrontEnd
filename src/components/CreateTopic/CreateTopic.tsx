@@ -1,4 +1,4 @@
-import styles from "./CreateTodo.module.scss"
+import styles from "./CreateTopic.module.scss"
 import {cc} from "../../utils/Classnames"
 import {useCreateTopicMutation, useLazyMeUserQuery} from '../../redux'
 import {Controller, useForm} from "react-hook-form"
@@ -6,7 +6,7 @@ import InputText from "../Input/InputText"
 import WhiteButton from "../AuthButton/WhiteButton"
 import {useEffect} from "react"
 
-interface CreateTodoProps {
+interface CreateTopicProps {
 }
 
 type FormData = {
@@ -14,7 +14,7 @@ type FormData = {
 	description: string
 }
 
-function CreateTodo(props: CreateTodoProps) {
+function CreateTopic(props: CreateTopicProps) {
 	const {
 	} = props
 
@@ -89,4 +89,4 @@ function CreateTodo(props: CreateTodoProps) {
 	)
 }
 
-export default CreateTodo
+export default CreateTopic

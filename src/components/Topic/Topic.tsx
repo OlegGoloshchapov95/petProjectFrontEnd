@@ -1,6 +1,7 @@
 import styles from "./Topic.module.scss"
 import {useDeleteTopicMutation} from '../../redux'
 import {cc} from "../../utils/Classnames"
+import Link from "../Link/Link";
 
 interface TopicProps {
 	title: string
@@ -22,7 +23,7 @@ function Topic(props: TopicProps) {
 	return (
 		<div className={styles.todoWrapper}>
 			<span className={styles.todoUser}>{userName}</span>
-			<h2 className={styles.todoTitle}>{title}</h2>
+			<Link to='/topicsMessages'><h2 className={styles.todoTitle}>{title}</h2></Link>
 			<p className={styles.todoDescription}>
 				{description}
 			</p>

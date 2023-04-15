@@ -2,7 +2,7 @@ import styles from "./InputText.module.scss"
 import {cc} from "../../utils/Classnames"
 import {useNavigate} from "react-router-dom"
 import CreateTodo from "../CreateTodo/CreateTodo"
-import {useLazyGetTodosQuery} from '../../redux'
+import {useLazyGetTopicsQuery} from '../../redux'
 import {useEffect} from "react"
 import Todo from "../Todo/Todo";
 
@@ -14,16 +14,16 @@ function TodosPage(props: TodosPageProps) {
 	} = props
 
 	const navigate = useNavigate()
-	const [getTodosTrigger, getTodosResult] = useLazyGetTodosQuery()
+	const [getTopicsTrigger, getTopicsResult] = useLazyGetTopicsQuery()
 
     useEffect(() => {
-		getTodosTrigger({})
-	}, [getTodosTrigger])
+		getTopicsTrigger({})
+	}, [getTopicsTrigger])
 
 	useEffect(() => {
-		console.log("getTodosResult")
-		console.log(getTodosResult)
-	}, [getTodosResult])
+		console.log("getTopicsResult")
+		console.log(getTopicsResult)
+	}, [getTopicsResult])
 
 	return (
 		<div>
@@ -35,7 +35,7 @@ function TodosPage(props: TodosPageProps) {
 
 			<CreateTodo/>
 
-			{getTodosResult?.data?.data && getTodosResult?.data?.data.map((item:any, index:number) => {
+			{getTopicsResult?.data?.data && getTopicsResult?.data?.data.map((item:any, index:number) => {
 				return <>
 					<Todo userName={item.attributes.user.username} id={item.id} title={item.attributes.title} description={item.attributes.description? item.attributes.description : ""}/>
 				</>

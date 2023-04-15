@@ -1,5 +1,5 @@
 import styles from "./Todo.module.scss"
-import {useDeleteTodoMutation} from '../../redux'
+import {useDeleteTopicMutation} from '../../redux'
 import {cc} from "../../utils/Classnames"
 
 interface TodoProps {
@@ -17,7 +17,7 @@ function Todo(props: TodoProps) {
 		userName,
 	} = props
 
-	const [deleteTodoTrigger, deleteTodoResult] = useDeleteTodoMutation()
+	const [deleteTopicTrigger, deleteTopicResult] = useDeleteTopicMutation()
 
 	return (
 		<div className={styles.todoWrapper}>
@@ -27,7 +27,7 @@ function Todo(props: TodoProps) {
 				{description}
 			</p>
 			<span className={styles.todoDelete} onClick={() => {
-				deleteTodoTrigger(id)
+				deleteTopicTrigger(id)
 			}}>Удалить</span>
 		</div>
 	)

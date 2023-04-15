@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { todosApi } from './todosApi';
+import { forumApi } from './todosApi';
 
 export const store = configureStore({
     reducer: {
-        [todosApi.reducerPath]: todosApi.reducer,
+        [forumApi.reducerPath]: forumApi.reducer,
     },
-    middleware: (getDefaultMiddlware) => getDefaultMiddlware().concat(todosApi.middleware)
+    middleware: (getDefaultMiddlware) => getDefaultMiddlware().concat(forumApi.middleware)
 });

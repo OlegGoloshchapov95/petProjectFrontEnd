@@ -1,6 +1,6 @@
 import styles from "./CreateTodo.module.scss"
 import {cc} from "../../utils/Classnames"
-import {useCreateTodoMutation, useLazyMeUserQuery} from '../../redux'
+import {useCreateTopicMutation, useLazyMeUserQuery} from '../../redux'
 import {Controller, useForm} from "react-hook-form"
 import InputText from "../Input/InputText"
 import WhiteButton from "../AuthButton/WhiteButton"
@@ -18,7 +18,7 @@ function CreateTodo(props: CreateTodoProps) {
 	const {
 	} = props
 
-	const [createTodoTrigger, createTodoResult] = useCreateTodoMutation()
+	const [createTopicTrigger, createTopicResult] = useCreateTopicMutation()
 	const [meUserTrigger, meUserResult] = useLazyMeUserQuery()
 
 	const {handleSubmit, control} = useForm<FormData>({
@@ -30,7 +30,7 @@ function CreateTodo(props: CreateTodoProps) {
 	},[meUserTrigger])
 
 	const onFormSubmit = (data: FormData) => {
-		createTodoTrigger({
+		createTopicTrigger({
 			data: {
 				"title": data.title,
 				"description": data.description,
@@ -81,9 +81,9 @@ function CreateTodo(props: CreateTodoProps) {
 			</div>
 			{
 				//@ts-ignore
-				createTodoResult?.error?.data?.error?.message &&
+				createTopicResult?.error?.data?.error?.message &&
 				//@ts-ignore
-				<div className={styles.errorBlock}>{createTodoResult?.error?.data?.error?.message}</div>}
+				<div className={styles.errorBlock}>{createTopicResult?.error?.data?.error?.message}</div>}
 			<WhiteButton isSubmit={true} isNotFullWith={true} className={styles.sendButton}>Create new todo</WhiteButton>
 		</form>
 	)

@@ -1,8 +1,8 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 
-export const todosApi = createApi({
-    reducerPath: 'todosApi',
-    tagTypes: ['Todos'],
+export const forumApi = createApi({
+    reducerPath: 'forumApi',
+    tagTypes: ['Topics'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:1337', prepareHeaders: (headers) => {
             const token = localStorage.getItem("bearerTokenForTodos")
@@ -30,27 +30,27 @@ export const todosApi = createApi({
                 body,
             })
         }),
-        createTodo: build.mutation({
+        createTopic: build.mutation({
             query: (body) => ({
-                url: 'api/todos',
+                url: 'api/topics',
                 method: 'POST',
                 body,
             }),
-            invalidatesTags: ["Todos"]
+            invalidatesTags: ["Topics"]
         }),
-        getTodos: build.query({
+        getTopics: build.query({
             query: () => ({
-                url: 'api/todos',
+                url: 'api/topics',
                 method: 'GET',
             }),
-            providesTags: ["Todos"]
+            providesTags: ["Topics"]
         }),
-        deleteTodo: build.mutation({
+        deleteTopic: build.mutation({
             query: (todo_id) => ({
-                url: `api/todos/${todo_id}`,
+                url: `api/topics/${todo_id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ["Todos"]
+            invalidatesTags: ["Topics"]
         }),
         meUser: build.query({
             query: () => ({
@@ -61,4 +61,4 @@ export const todosApi = createApi({
     })
 })
 
-export const {useRegisterUserMutation, useAuthUserMutation, useCreateTodoMutation, useLazyGetTodosQuery, useLazyMeUserQuery, useDeleteTodoMutation} = todosApi
+export const {useRegisterUserMutation, useAuthUserMutation, useCreateTopicMutation, useLazyGetTopicsQuery, useLazyMeUserQuery, useDeleteTopicMutation} = forumApi

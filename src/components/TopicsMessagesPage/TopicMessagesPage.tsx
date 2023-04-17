@@ -44,6 +44,8 @@ function TopicMessagesPage(props: TopicMessagesPageProps) {
 			}}>Logout
 			</button>
 			<CreateTopicMessage/>
+			{getTopicByIdResult?.data?.data?.attributes?.title && (<h2>{getTopicByIdResult.data.data.attributes.title}</h2>)}
+			{getTopicByIdResult?.data?.data?.attributes?.description && (<p>{getTopicByIdResult.data.data.attributes.description}</p>)}
 		</div>
 	)
 }

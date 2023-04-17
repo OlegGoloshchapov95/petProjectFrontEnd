@@ -55,7 +55,7 @@ export const forumApi = createApi({
         }),
         getTopicById: build.query({
             query: (id) => ({
-                url: `api/topics/:${id}`,
+                url: `api/topics/${id}?populate=*`,
                 method: 'GET',
             }),
         }),

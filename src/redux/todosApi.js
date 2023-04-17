@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react"
 
 export const forumApi = createApi({
     reducerPath: 'forumApi',
-    tagTypes: ['Topics'],
+    tagTypes: ['Topics','Messages'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:1337', prepareHeaders: (headers) => {
             const token = localStorage.getItem("bearerTokenForTodos")
@@ -38,12 +38,26 @@ export const forumApi = createApi({
             }),
             invalidatesTags: ["Topics"]
         }),
+        createMessage: build.mutation({
+            query: (body) => ({
+                url: 'api/messages',
+                method: 'POST',
+                body,
+            }),
+            invalidatesTags: ["Messages"]
+        }),
         getTopics: build.query({
             query: () => ({
                 url: 'api/topics',
                 method: 'GET',
             }),
             providesTags: ["Topics"]
+        }),
+        getTopicById: build.query({
+            query: (id) => ({
+                url: `api/topics/:${id}`,
+                method: 'GET',
+            }),
         }),
         deleteTopic: build.mutation({
             query: (todo_id) => ({
@@ -61,4 +75,4 @@ export const forumApi = createApi({
     })
 })
 
-export const {useRegisterUserMutation, useAuthUserMutation, useCreateTopicMutation, useLazyGetTopicsQuery, useLazyMeUserQuery, useDeleteTopicMutation} = forumApi
+export const {useRegisterUserMutation, useAuthUserMutation, useCreateTopicMutation, useCreateMessageMutation, useLazyGetTopicsQuery, useLazyMeUserQuery, useDeleteTopicMutation, useLazyGetTopicByIdQuery} = forumApi

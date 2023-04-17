@@ -2,9 +2,10 @@ import styles from "./TopicsMessagesPage.module.scss"
 import {cc} from "../../utils/Classnames"
 import {useNavigate, useParams} from "react-router-dom"
 import CreateTopic from "../CreateTopic/CreateTopic"
-import {useLazyGetTopicsQuery} from '../../redux'
+import {useLazyGetTopicByIdQuery} from '../../redux'
 import {useEffect} from "react"
 import Topic from "../Topic/Topic"
+import CreateTopicMessage from "../CreateTopicMessage/CreateTopicMessage"
 
 interface TopicMessagesPageProps {
 }
@@ -15,11 +16,13 @@ function TopicMessagesPage(props: TopicMessagesPageProps) {
 
 	const navigate = useNavigate()
 	const {topic_id} = useParams()
-	const [getTopicsTrigger, getTopicsResult] = useLazyGetTopicsQuery()
+	const [getTopicByIdTrigger, getTopicByIdResult] = useLazyGetTopicByIdQuery()
 
     useEffect(() => {
-		getTopicsTrigger({})
-	}, [getTopicsTrigger])
+		if(topic_id) {
+			getTopicByIdTrigger(topic_id)
+		}
+	}, [getTopicByIdTrigger])
 
 	useEffect(() => {
 		console.log("topic_id")
@@ -27,9 +30,11 @@ function TopicMessagesPage(props: TopicMessagesPageProps) {
 	}, [topic_id])
 
 	useEffect(() => {
-		console.log("getTopicsResult")
-		console.log(getTopicsResult)
-	}, [getTopicsResult])
+		if(getTopicByIdResult) {
+			console.log("getTopicsResult")
+			console.log(getTopicByIdResult)
+		}
+	}, [getTopicByIdResult])
 
 	return (
 		<div>
@@ -38,12 +43,7 @@ function TopicMessagesPage(props: TopicMessagesPageProps) {
 				navigate("/")
 			}}>Logout
 			</button>
-
-			{getTopicsResult?.data?.data && getTopicsResult?.data?.data.map((item:any, index:number) => {
-				return <>
-					<Topic userName={item.attributes.user.username} id={item.id} title={item.attributes.title} description={item.attributes.description? item.attributes.description : ""}/>
-				</>
-			})}
+			<CreateTopicMessage/>
 		</div>
 	)
 }

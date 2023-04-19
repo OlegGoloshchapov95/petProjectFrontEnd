@@ -37,7 +37,7 @@ function TopicsPage(props: TopicsPageProps) {
 
 			{getTopicsResult?.data?.data && getTopicsResult?.data?.data.map((item:any, index:number) => {
 				return <>
-					<Topic userName={item.attributes.user.username} id={item.id} title={item.attributes.title} description={item.attributes.description? item.attributes.description : ""}/>
+					<Topic userName={item.attributes.user.username} id={item.id} title={item.attributes.title} description={item.attributes.description? item.attributes.description : ""} userId={item?.attributes?.user?.id? item.attributes.user.id : ""}/>
 				</>
 			})}
 		</div>

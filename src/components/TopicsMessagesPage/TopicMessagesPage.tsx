@@ -47,7 +47,7 @@ function TopicMessagesPage(props: TopicMessagesPageProps) {
 			{getTopicByIdResult?.data?.data?.attributes?.description && (<p>{getTopicByIdResult.data.data.attributes.description}</p>)}
 			{getTopicByIdResult?.data?.data?.attributes?.messages?.data && (getTopicByIdResult.data.data.attributes.messages.data.map((item:any) => {
 				return <>
-					<Message userName={item.attributes?.user?.username? item.attributes.user.username : ""} id={item.id} description={item.attributes.textOfMessage? item.attributes.textOfMessage : ""}/>
+					<Message userName={item.attributes?.user?.username? item.attributes.user.username : ""} id={item.id} description={item.attributes.textOfMessage? item.attributes.textOfMessage : ""} userId={item?.attributes?.user?.id? item.attributes.user.id : ""}/>
 				</>
 			}))}
 		</div>

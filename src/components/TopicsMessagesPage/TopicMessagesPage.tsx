@@ -1,11 +1,10 @@
 import styles from "./TopicsMessagesPage.module.scss"
 import {cc} from "../../utils/Classnames"
 import {useNavigate, useParams} from "react-router-dom"
-import CreateTopic from "../CreateTopic/CreateTopic"
 import {useLazyGetTopicByIdQuery} from '../../redux'
 import {useEffect} from "react"
-import Topic from "../Topic/Topic"
 import CreateTopicMessage from "../CreateTopicMessage/CreateTopicMessage"
+import Message from "../Message/Message"
 
 interface TopicMessagesPageProps {
 }
@@ -48,7 +47,7 @@ function TopicMessagesPage(props: TopicMessagesPageProps) {
 			{getTopicByIdResult?.data?.data?.attributes?.description && (<p>{getTopicByIdResult.data.data.attributes.description}</p>)}
 			{getTopicByIdResult?.data?.data?.attributes?.messages?.data && (getTopicByIdResult.data.data.attributes.messages.data.map((item:any) => {
 				return <>
-					<Topic userName={item.attributes?.user?.username? item.attributes.user.username : ""} id={item.id} title={getTopicByIdResult.data.data.attributes.title} description={item.attributes.textOfMessage? item.attributes.textOfMessage : ""}/>
+					<Message userName={item.attributes?.user?.username? item.attributes.user.username : ""} id={item.id} description={item.attributes.textOfMessage? item.attributes.textOfMessage : ""}/>
 				</>
 			}))}
 		</div>

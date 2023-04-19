@@ -46,6 +46,13 @@ export const forumApi = createApi({
             }),
             invalidatesTags: ["Messages"]
         }),
+        deleteMessageById: build.mutation({
+            query: (message_id) => ({
+                url: `api/messages/${message_id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ["Messages"]
+        }),
         getTopics: build.query({
             query: () => ({
                 url: 'api/topics',
@@ -76,4 +83,4 @@ export const forumApi = createApi({
     })
 })
 
-export const {useRegisterUserMutation, useAuthUserMutation, useCreateTopicMutation, useCreateMessageMutation, useLazyGetTopicsQuery, useLazyMeUserQuery, useDeleteTopicMutation, useLazyGetTopicByIdQuery} = forumApi
+export const {useRegisterUserMutation, useAuthUserMutation, useCreateTopicMutation, useCreateMessageMutation, useLazyGetTopicsQuery, useLazyMeUserQuery, useDeleteTopicMutation, useLazyGetTopicByIdQuery, useDeleteMessageByIdMutation} = forumApi

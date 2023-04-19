@@ -46,6 +46,11 @@ function TopicMessagesPage(props: TopicMessagesPageProps) {
 			<CreateTopicMessage/>
 			{getTopicByIdResult?.data?.data?.attributes?.title && (<h2>{getTopicByIdResult.data.data.attributes.title}</h2>)}
 			{getTopicByIdResult?.data?.data?.attributes?.description && (<p>{getTopicByIdResult.data.data.attributes.description}</p>)}
+			{getTopicByIdResult?.data?.data?.attributes?.messages?.data && (getTopicByIdResult.data.data.attributes.messages.data.map((item:any) => {
+				return <>
+					<Topic userName={item.attributes?.user?.username? item.attributes.user.username : ""} id={item.id} title={getTopicByIdResult.data.data.attributes.title} description={item.attributes.textOfMessage? item.attributes.textOfMessage : ""}/>
+				</>
+			}))}
 		</div>
 	)
 }

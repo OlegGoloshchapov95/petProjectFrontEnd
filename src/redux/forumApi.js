@@ -58,6 +58,7 @@ export const forumApi = createApi({
                 url: `api/topics/${id}?populate=*`,
                 method: 'GET',
             }),
+            providesTags: ["Messages"]
         }),
         deleteTopic: build.mutation({
             query: (todo_id) => ({

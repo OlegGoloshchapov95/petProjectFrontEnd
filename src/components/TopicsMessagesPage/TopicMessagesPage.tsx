@@ -5,6 +5,7 @@ import {useLazyGetTopicByIdQuery} from '../../redux'
 import {useEffect} from "react"
 import CreateTopicMessage from "../CreateTopicMessage/CreateTopicMessage"
 import Message from "../Message/Message"
+import Link from "../Link/Link"
 
 interface TopicMessagesPageProps {
 }
@@ -42,14 +43,14 @@ function TopicMessagesPage(props: TopicMessagesPageProps) {
 				navigate("/")
 			}}>Logout
 			</button>
-			<CreateTopicMessage/>
-			{getTopicByIdResult?.data?.data?.attributes?.title && (<h2>{getTopicByIdResult.data.data.attributes.title}</h2>)}
+			{getTopicByIdResult?.data?.data?.attributes?.title && (<h2><Link className={styles.forumWord} to={"/topics"}>Forum</Link> {'>'} {getTopicByIdResult.data.data.attributes.title}</h2>)}
 			{getTopicByIdResult?.data?.data?.attributes?.description && (<p>{getTopicByIdResult.data.data.attributes.description}</p>)}
 			{getTopicByIdResult?.data?.data?.attributes?.messages?.data && (getTopicByIdResult.data.data.attributes.messages.data.map((item:any) => {
 				return <>
 					<Message userName={item.attributes?.user?.username? item.attributes.user.username : ""} id={item.id} description={item.attributes.textOfMessage? item.attributes.textOfMessage : ""} userId={item?.attributes?.user?.id? item.attributes.user.id : ""}/>
 				</>
 			}))}
+			<CreateTopicMessage/>
 		</div>
 	)
 }

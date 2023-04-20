@@ -39,7 +39,9 @@ function Topic(props: TopicProps) {
 	return (
 		<div className={styles.todoWrapper}>
 			<span className={styles.todoUser}>{userName}</span>
-			<Link to={`/topicsMessages/${id}`}><h2 className={styles.todoTitle}>{title}</h2></Link>
+			<div>
+				<Link className={styles.todoTitleLink} to={`/topicsMessages/${id}`}><h2 className={styles.todoTitle}>{title}</h2></Link>
+			</div>
 			<p className={styles.todoDescription}>
 				{description}
 			</p>

@@ -32,14 +32,13 @@ function TopicsPage(props: TopicsPageProps) {
 				navigate("/")
 			}}>Logout
 			</button>
-
-			<CreateTopic/>
-
+			<h1>Forum</h1>
 			{getTopicsResult?.data?.data && getTopicsResult?.data?.data.map((item:any, index:number) => {
 				return <>
 					<Topic userName={item.attributes.user.username} id={item.id} title={item.attributes.title} description={item.attributes.description? item.attributes.description : ""} userId={item?.attributes?.user?.id? item.attributes.user.id : ""}/>
 				</>
 			})}
+            <CreateTopic/>
 		</div>
 	)
 }

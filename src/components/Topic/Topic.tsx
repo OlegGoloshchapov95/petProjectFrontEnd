@@ -1,9 +1,10 @@
 import styles from "./Topic.module.scss"
-import {useDeleteTopicMutation, useLazyMeUserQuery} from '../../redux'
+import {useDeleteTopicMutation, useLazyMeUserQuery, useLazyGetTopicByIdQuery, useDeleteMessageByIdMutation} from '../../redux'
 import {cc} from "../../utils/Classnames"
 import Link from "../Link/Link"
 import {useNavigate} from "react-router-dom"
-import {useEffect} from "react";
+import {useEffect} from "react"
+import Message from "../Message/Message";
 
 interface TopicProps {
 	title: string
@@ -26,6 +27,8 @@ function Topic(props: TopicProps) {
 
 	const [deleteTopicTrigger, deleteTopicResult] = useDeleteTopicMutation()
 	const [meUserTrigger, meUserResult] = useLazyMeUserQuery()
+	const [getTopicByIdTrigger, getTopicByIdResult] = useLazyGetTopicByIdQuery()
+	const [deleteMessageByIdTrigger, deleteMessageByIdResult] = useDeleteMessageByIdMutation()
 
 	useEffect(() => {
 		meUserTrigger({})
@@ -35,6 +38,15 @@ function Topic(props: TopicProps) {
 		console.log("meUserResult")
 		console.log(meUserResult)
 	},[meUserResult])
+
+	useEffect(() => {
+		if(getTopicByIdResult?.data?.data?.attributes?.messages?.data) {
+			getTopicByIdResult.data.data.attributes.messages.data.map((item:any) => {
+				deleteMessageByIdTrigger(item.id)
+			})
+			deleteTopicTrigger(getTopicByIdResult?.data?.data?.id)
+		}
+	},[getTopicByIdResult])
 
 	return (
 		<div className={styles.todoWrapper}>
@@ -47,7 +59,7 @@ function Topic(props: TopicProps) {
 			</p>
 			{meUserResult?.data?.id && meUserResult?.data?.id == userId && (
 			<span className={styles.todoDelete} onClick={() => {
-				deleteTopicTrigger(id)
+				getTopicByIdTrigger(id)
 			}}>Удалить</span>)}
 		</div>
 	)

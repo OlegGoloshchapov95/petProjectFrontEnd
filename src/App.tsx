@@ -9,7 +9,7 @@ function App() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(window?.location?.pathname=="/" && localStorage.getItem("bearerTokenForTodos")) {
+        if(window?.location?.pathname=="/" && localStorage.getItem("bearerTokenForForum")) {
             navigate("/topics")
         }
     },[navigate])

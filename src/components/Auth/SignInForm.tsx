@@ -37,8 +37,8 @@ function SignInForm(props: SignInFormProps) {
     useEffect(() => {
         console.log(authUserResult)
         if (authUserResult?.data?.jwt) {
-            localStorage.setItem("bearerTokenForTodos", `Bearer ${authUserResult.data.jwt}`)
-            navigate("/todos")
+            localStorage.setItem("bearerTokenForForum", `Bearer ${authUserResult.data.jwt}`)
+            navigate("/topics")
         }
     }, [authUserResult])
 

@@ -28,7 +28,7 @@ function TopicsPage(props: TopicsPageProps) {
 	return (
 		<div>
 			<button onClick={() => {
-				localStorage.removeItem("bearerTokenForTodos")
+				localStorage.removeItem("bearerTokenForForum")
 				navigate("/")
 			}}>Logout
 			</button>

@@ -39,8 +39,8 @@ function SignUpForm(props: SignUpFormProps) {
 
 	useEffect(() => {
 		if(registerUserResult?.data?.jwt) {
-			localStorage.setItem("bearerTokenForTodos", `Bearer ${registerUserResult.data.jwt}`)
-			navigate("/todos")
+			localStorage.setItem("bearerTokenForForum", `Bearer ${registerUserResult.data.jwt}`)
+			navigate("/topics")
 		}
 	}, [registerUserResult])
 

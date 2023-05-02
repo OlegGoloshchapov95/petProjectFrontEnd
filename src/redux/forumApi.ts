@@ -5,7 +5,7 @@ export const forumApi = createApi({
     tagTypes: ['Topics','Messages'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:1337', prepareHeaders: (headers) => {
-            const token = localStorage.getItem("bearerTokenForTodos")
+            const token = localStorage.getItem("bearerTokenForForum")
 
             // If we have a token set in state, let's assume that we should be passing it.
             if (token) {
@@ -47,7 +47,7 @@ export const forumApi = createApi({
             invalidatesTags: ["Messages"]
         }),
         deleteMessageById: build.mutation({
-            query: (message_id) => ({
+            query: (message_id:string) => ({
                 url: `api/messages/${message_id}`,
                 method: 'DELETE',
             }),
@@ -61,14 +61,14 @@ export const forumApi = createApi({
             providesTags: ["Topics"]
         }),
         getTopicById: build.query({
-            query: (id) => ({
+            query: (id:string) => ({
                 url: `api/topics/${id}?populate=*`,
                 method: 'GET',
             }),
             providesTags: ["Messages"]
         }),
         deleteTopic: build.mutation({
-            query: (todo_id) => ({
+            query: (todo_id:string) => ({
                 url: `api/topics/${todo_id}`,
                 method: 'DELETE',
             }),

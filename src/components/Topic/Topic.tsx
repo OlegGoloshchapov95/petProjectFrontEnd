@@ -3,7 +3,7 @@ import {useDeleteTopicMutation, useLazyMeUserQuery, useLazyGetTopicByIdQuery, us
 import {cc} from "../../utils/Classnames"
 import Link from "../Link/Link"
 import {useNavigate} from "react-router-dom"
-import {useEffect} from "react"
+import {useEffect, useRef} from "react"
 import Message from "../Message/Message";
 
 interface TopicProps {
@@ -29,6 +29,7 @@ function Topic(props: TopicProps) {
 	const [meUserTrigger, meUserResult] = useLazyMeUserQuery()
 	const [getTopicByIdTrigger, getTopicByIdResult] = useLazyGetTopicByIdQuery()
 	const [deleteMessageByIdTrigger, deleteMessageByIdResult] = useDeleteMessageByIdMutation()
+    const isTopicDeleteInProgress = useRef(false)
 
 	useEffect(() => {
 		meUserTrigger({})
@@ -40,11 +41,12 @@ function Topic(props: TopicProps) {
 	},[meUserResult])
 
 	useEffect(() => {
-		if(getTopicByIdResult?.data?.data?.attributes?.messages?.data) {
+		if(isTopicDeleteInProgress.current == true && getTopicByIdResult?.data?.data?.attributes?.messages?.data) {
 			getTopicByIdResult.data.data.attributes.messages.data.map((item:any) => {
 				deleteMessageByIdTrigger(item.id)
 			})
 			deleteTopicTrigger(getTopicByIdResult?.data?.data?.id)
+			isTopicDeleteInProgress.current = false
 		}
 	},[getTopicByIdResult])
 
@@ -59,6 +61,7 @@ function Topic(props: TopicProps) {
 			</p>
 			{meUserResult?.data?.id && meUserResult?.data?.id == userId && (
 			<span className={styles.todoDelete} onClick={() => {
+				isTopicDeleteInProgress.current = true
 				getTopicByIdTrigger(id)
 			}}>Удалить</span>)}
 		</div>

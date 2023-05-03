@@ -31,6 +31,11 @@ function Topic(props: TopicProps) {
 	const [deleteMessageByIdTrigger, deleteMessageByIdResult] = useDeleteMessageByIdMutation()
     const isTopicDeleteInProgress = useRef(false)
 
+	const deleteTopicWithMessages = () => {
+		isTopicDeleteInProgress.current = true
+		getTopicByIdTrigger(id)
+	}
+
 	useEffect(() => {
 		meUserTrigger({})
 	},[meUserTrigger])
@@ -60,10 +65,7 @@ function Topic(props: TopicProps) {
 				{description}
 			</p>
 			{meUserResult?.data?.id && meUserResult?.data?.id == userId && (
-			<span className={styles.todoDelete} onClick={() => {
-				isTopicDeleteInProgress.current = true
-				getTopicByIdTrigger(id)
-			}}>Удалить</span>)}
+			<span className={styles.todoDelete} onClick={deleteTopicWithMessages}>Удалить</span>)}
 		</div>
 	)
 }
